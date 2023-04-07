@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "TesteFocusTextil", "TesteFocusTextil.njsproj", "{F3006D05-A793-44F3-836B-80674AC9B380}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3006D05-A793-44F3-836B-80674AC9B380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3006D05-A793-44F3-836B-80674AC9B380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3006D05-A793-44F3-836B-80674AC9B380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3006D05-A793-44F3-836B-80674AC9B380}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {051F7D12-03BD-4C25-971A-20DB7CC5089E}
+	EndGlobalSection
+EndGlobal

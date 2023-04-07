@@ -1,0 +1,3 @@
+C:\Users\leona\source\repos\TesteFocusTextil\obj\Debug\TesteFocusTextil.njsproj.AssemblyReference.cache
+C:\Users\leona\source\repos\TesteFocusTextil\obj\Debug\TesteFocusTextil.njsproj.CoreCompileInputs.cache
+C:\Users\leona\source\repos\TesteFocusTextil\bin\Microsoft.NodejsTools.WebRole.dll
