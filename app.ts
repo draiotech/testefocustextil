@@ -1,59 +1,77 @@
 import * as express from 'express';
+import * as core from 'express-serve-static-core';
 import * as bodyParser from 'body-parser';
 import { AddressInfo } from "net";
 import * as path from 'path';
 
 import routes from './routes/index';
 import register from './routes/register';
+import login from './routes/login';
 
 const debug = require('debug')('my express app');
+
 const app = express();
+class App {
+    private app: core.Express;
 
-//body parse
-app.use(bodyParser.json());
+    constructor() {
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+        this.app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
+        //body parse
+        this.app.use(bodyParser.json());
 
-app.use('/', routes);
-app.use('/register', register);
+        // view engine setup
+        this.app.set('views', path.join(__dirname, 'views'));
+        this.app.set('view engine', 'pug');
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err[ 'status' ] = 404;
-    next(err);
-});
+        this.app.use(express.static(path.join(__dirname, 'public')));
 
-// error handlers
+        this.app.use('/', routes);
+        this.app.use('/register', register);
+        this.app.use('/login', login);
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use((err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-unused-vars
-        res.status(err[ 'status' ] || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
+        // catch 404 and forward to error handler
+        this.app.use((req, res, next) => {
+            const err = new Error('Not Found');
+            err['status'] = 404;
+            next(err);
         });
-    });
+
+        // error handlers
+
+        // development error handler
+        // will print stacktrace
+        if (this.app.get('env') === 'development') {
+            this.app.use((err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-unused-vars
+                res.status(err['status'] || 500);
+                res.render('error', {
+                    message: err.message,
+                    error: err
+                });
+            });
+        }
+
+        // production error handler
+        // no stacktraces leaked to user
+        this.app.use((err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-unused-vars
+            res.status(err.status || 500);
+            res.render('error', {
+                message: err.message,
+                error: {}
+            });
+        });
+
+        this.app.set('port', process.env.PORT || 3000);
+    }
+
+    async server() {
+        return this.app.listen(this.app.get('port'), function () {});
+    }
+
+    async server_test() {
+        return this.app;
+    }
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res, next) => { // eslint-disable-line @typescript-eslint/no-unused-vars
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
-
-app.set('port', process.env.PORT || 3000);
-
-const server = app.listen(app.get('port'), function () {
-    debug(`Express server listening on port ${(server.address() as AddressInfo).port}`);
-});
+export default new App();
