@@ -1,0 +1,5 @@
+.vs/
+bin/
+coverage/
+node_modules/
+obj/
